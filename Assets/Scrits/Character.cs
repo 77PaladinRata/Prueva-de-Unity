@@ -22,7 +22,16 @@ public class Character : MonoBehaviour
     //* Nueva
     [SerializeField] 
     private Transform characterStartPivot;
-    //* 
+    /// <summary>
+    /// Agregando nuevas para el Sonido
+    /// </summary>
+    [SerializeField] 
+    private UnityEvent onJump;
+    [SerializeField] 
+    private UnityEvent onMoveToSide;
+    [SerializeField] 
+    private UnityEvent onRoll;
+    //* // Sonidos Nuevos
     private bool isGrunded = true ;
     private bool isMoving = false; //* 
     // * limite de movimiento
@@ -63,6 +72,7 @@ public class Character : MonoBehaviour
         if (isGrunded)
         {   //* nueva y desechada           //* Cambiar
         //* characterAnimator.Play(characterData.jumpAnimationName, 0, 0f);
+            onJump?.Invoke(); //* nueva sonido
             characterAnimator.Play(characterData.runAnimationName, 0, 0f);
             characterRigidbody.AddForce(Vector3.up * jumForce, ForceMode.Impulse);
             isGrunded = false;
@@ -79,6 +89,7 @@ public class Character : MonoBehaviour
             characterRigidbody.AddForce(Vector3.up * jumForce * 2, ForceMode.Impulse);
         } // *Nueva
         characterAnimator.Play(characterData.rollAnimationName, 0, 0f);
+        onRoll?.Invoke(); //* Nueva Sonido
         isRolling = true; //* Mover limites
         StartCoroutine(ResetRoll()); // * mover limites
     }
@@ -98,6 +109,7 @@ public class Character : MonoBehaviour
     {
     //* if (isMoving) return;
         if (isMoving || !isActive) return;
+        onMoveToSide?.Invoke(); //* Nueva Sonido
         //* 
         characterAnimator.Play(characterData.MoveAnimationName, 0, 0f);
         isMoving = true;

@@ -8,6 +8,7 @@ TagManager:
   - New tag
   - Obstacle
   - Coin
+  - JumpPowerUp
   layers:
   - Default
   - TransparentFX

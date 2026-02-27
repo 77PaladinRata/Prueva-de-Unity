@@ -9,10 +9,16 @@ public class PlayerCollide : MonoBehaviour
     ///* colision de monedas
     [SerializeField]
     private string coingTag = "Coin";
+    /// las botas
+    [SerializeField]
+    private string jumpPowerUpTag = "JumPowerUp";
     //* Agregandole el T
     [SerializeField]
     private UnityEvent <Transform> onObstacleCollision;
 // *private void OnCollisionEnter(Collision collision)
+    //* otras Botas
+    [SerializeField]
+    private UnityEvent<Transform> onJumpPowerUpCollected;
 //* para las monedas
     [SerializeField]
     private UnityEvent<Transform> onCoinCollected;
@@ -27,6 +33,11 @@ public class PlayerCollide : MonoBehaviour
             onCoinCollected?.Invoke(transform);
             other.gameObject.SetActive(false);
         }
-
+    //* Agregandole las botas
+        else if (other.CompareTag(jumpPowerUpTag))
+        {
+            onJumpPowerUpCollected?.Invoke(transform);
+            other.gameObject.SetActive(false);
+        }
     }
 }

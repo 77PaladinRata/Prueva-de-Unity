@@ -15,6 +15,14 @@ public class Character : MonoBehaviour
     //*
     [SerializeField]
     private float jumForce = 5f;
+    /// <summary>
+    /// Agregandole otras piernas
+    public float JumpForce
+    {
+        get { return jumForce; }
+        set { jumForce = value;}
+    }
+    /// </summary>
     [SerializeField]
     private float distanceToMove = 2f;
     [SerializeField]    //* 
@@ -31,7 +39,14 @@ public class Character : MonoBehaviour
     private UnityEvent onMoveToSide;
     [SerializeField] 
     private UnityEvent onRoll;
-    //* // Sonidos Nuevos
+    /// <summary>
+    /// PARA LAS MONEDAS
+    /// </summary>
+    [SerializeField] 
+    private Collider normalCollider;
+    [SerializeField] 
+    private Collider rollCollider;
+    //* // Los Sonidos
     private bool isGrunded = true ;
     private bool isMoving = false; //* 
     // * limite de movimiento
@@ -48,10 +63,13 @@ public class Character : MonoBehaviour
     }
     public void StartGame() //* Nueva Agregada
     {
+        //* colliciones monedas
+        normalCollider.enabled = true; //* moneda
+        rollCollider.enabled = false; //* moneda
         isRolling= false;
         isMoving = false;
-        isActive = true;                //*cambio
-        characterAnimator.Play(characterData.runAnimationName, 0, 0f);
+        isActive = true;     //*cambio por tercera vez [run por jump]
+        characterAnimator.Play(characterData.jumpAnimationName, 0, 0f);
         transform.position = characterStartPivot.position;
     }
     /// <summary>
@@ -91,6 +109,9 @@ public class Character : MonoBehaviour
         characterAnimator.Play(characterData.rollAnimationName, 0, 0f);
         onRoll?.Invoke(); //* Nueva Sonido
         isRolling = true; //* Mover limites
+        //* Coliciones monedas
+        normalCollider.enabled = false; //* Moneda
+        rollCollider.enabled = true; //* Moneda
         StartCoroutine(ResetRoll()); // * mover limites
     }
     public void MoveLeft() ////*4° MOVE LEFT
@@ -129,6 +150,9 @@ public class Character : MonoBehaviour
     {
         yield return new WaitForSeconds(characterAnimator.GetCurrentAnimatorStateInfo(0).length);
         isRolling = false;
+        //* mas monedas
+        normalCollider.enabled = true ; //* moneda
+        rollCollider.enabled = false; //* moneda
     }
     // *  Esta siempre abajo
     private void OnCollisionEnter(Collision collision)

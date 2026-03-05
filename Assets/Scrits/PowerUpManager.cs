@@ -22,7 +22,7 @@ public class PowerUpManager : MonoBehaviour
     {
         platformsNumber = Random.Range(minPlatformsNumber, maxPlatformsNumber);
     }
-    private void PlatformPassed(Platform platform)
+    public void PlatformPassed(Platform platform)
     {
         platformsCounter++;
         if (platformsCounter >= platformsNumber)

@@ -12,6 +12,9 @@ public class PlayerCollide : MonoBehaviour
     /// las botas
     [SerializeField]
     private string jumpPowerUpTag = "JumPowerUp";
+    //* iman si es que sirbe
+    [SerializeField]
+    private UnityEvent<Transform> onMagnetCollected;
     //* Agregandole el T
     [SerializeField]
     private UnityEvent <Transform> onObstacleCollision;
@@ -33,11 +36,16 @@ public class PlayerCollide : MonoBehaviour
             onCoinCollected?.Invoke(transform);
             other.gameObject.SetActive(false);
         }
-    //* Agregandole las botas
+        //* Agregandole las botas
         else if (other.CompareTag(jumpPowerUpTag))
         {
             onJumpPowerUpCollected?.Invoke(transform);
             other.gameObject.SetActive(false);
         }
+        else if (other.CompareTag("Magnet"))
+         {
+            onMagnetCollected?.Invoke(transform);
+            other.gameObject.SetActive(false); 
+         }
     }
 }

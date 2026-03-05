@@ -103,6 +103,18 @@ MonoBehaviour:
   jumForce: 5
   distanceToMove: 2
   moveDuration: 0.2
+  characterStartPivot: {fileID: 0}
+  onJump:
+    m_PersistentCalls:
+      m_Calls: []
+  onMoveToSide:
+    m_PersistentCalls:
+      m_Calls: []
+  onRoll:
+    m_PersistentCalls:
+      m_Calls: []
+  normalCollider: {fileID: 0}
+  rollCollider: {fileID: 0}
 --- !u!114 &4818516336321704638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCollide
   obstacleTag: Obstacle
+  coingTag: Coin
+  jumpPowerUpTag: JumPowerUp
   onObstacleCollision:
     m_PersistentCalls:
       m_Calls:
@@ -143,6 +157,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onJumpPowerUpCollected:
+    m_PersistentCalls:
+      m_Calls: []
+  onCoinCollected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &4989048565837971193
 PrefabInstance:
   m_ObjectHideFlags: 0

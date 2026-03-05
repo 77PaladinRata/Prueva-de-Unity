@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Platform
   coins:
-  - {fileID: 0}
+  - {fileID: 5364024366105366139, guid: 54fb6c0727ee2b749abca595df07e370, type: 3}
 --- !u!1 &3319062344950276086
 GameObject:
   m_ObjectHideFlags: 0

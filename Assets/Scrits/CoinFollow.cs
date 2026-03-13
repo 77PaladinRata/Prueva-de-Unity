@@ -8,7 +8,8 @@ public class CoinFollow : MonoBehaviour
     [SerializeField]
     private float minimunDistance = 0.05f;
     private bool isFollowing = false;
-    private void StartFollowing(Transform playerTransform)
+    private Vector3 originalPosition;
+    public void StartFollowing(Transform playerTransform)
     {
         originalPosition = transform.localPosition;
         player = playerTransform;
@@ -18,9 +19,9 @@ public class CoinFollow : MonoBehaviour
     {
         if(isFollowing && player != null)
         {
-            Vector3 tragetPosition = player.position; //* + originalPosition;
-            tarnsform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, targetPosition > minimunDistance))
+            Vector3 targetPosition = player.position; //* + originalPosition;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, targetPosition) < minimunDistance)
             {
                 player = null;
                 isFollowing = false;
